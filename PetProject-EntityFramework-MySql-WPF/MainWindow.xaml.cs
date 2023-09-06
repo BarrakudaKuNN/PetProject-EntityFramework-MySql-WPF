@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetProject_EntityFramework_MySql_WPF.Entiti;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,25 @@ namespace PetProject_EntityFramework_MySql_WPF
         public MainWindow()
         {
             InitializeComponent();
+
+        }
+
+        private void Button_Test_Upload_Click(object sender, RoutedEventArgs e)
+        {
+            #region UploadToDB code
+            //using(var context = new MyDbConnection())
+            //{
+            //    var employe = new Employe()
+            //    {
+            //        FirstName = "Vladislav",
+            //        LastName = "Pizdabolov"
+            //    };
+            //    context.Employes.Add(employe);
+            //    context.SaveChanges();
+
+            //    TextBox_Resul_Window.Text = $"Id: {employe.EmployeeId} , name: {employe.FirstName}, surname: {employe.LastName}";
+            //}
+            #endregion
         }
     }
 }

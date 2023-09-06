@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:PetProject_EntityFramework_MySql_WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+  <Grid>
+    <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}"/>
+    <Button x:Name="Button_Test_Upload" Content="Upload" HorizontalAlignment="Left" Margin="64,177,0,0" VerticalAlignment="Top" Height="50" Width="85" Click="Button_Test_Upload_Click"/>
+    <TextBox x:Name="TextBox_Resul_Window" HorizontalAlignment="Left" Margin="274,189,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="361" Height="110"/>
+
+  </Grid>
 </Window>
