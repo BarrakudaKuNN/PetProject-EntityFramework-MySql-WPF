@@ -1,6 +1,7 @@
 ﻿using PetProject_EntityFramework_MySql_WPF.Entiti;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +44,13 @@ namespace PetProject_EntityFramework_MySql_WPF
             //    TextBox_Resul_Window.Text = $"Id: {employe.EmployeeId} , name: {employe.FirstName}, surname: {employe.LastName}";
             //}
             #endregion
+
+            using (var context = new MyDbConnection())
+            {
+                var slaves = context.Employes.ToList();
+                DataGrid_MyDb.ItemsSource = slaves;
+            }
+
         }
     }
 }
