@@ -33,6 +33,7 @@ namespace PetProject_EntityFramework_MySql_WPF
         private void Button_Test_Upload_Click(object sender, RoutedEventArgs e)
         {
             #region UploadToDB code
+            //Upload Method
                 var employe = new Employe()
                 {
                     FirstName = "Vladislav",
