@@ -76,27 +76,37 @@ namespace PetProject_EntityFramework_MySql_WPF
         private void DataGrid_MyDb_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
 
-            // получаем измененный объект Employe из текущей строки
-            
-
+           
             if (e.EditAction == DataGridEditAction.Commit)
             {
-                // Получаем объект, соответствующий редактируемой ячейке 
-                var editedCell = e.Column.GetCellContent(e.Row);
                 
-                // Если содержимое ячейки является текстовым блоком, извлекаем из него новое значение
-                if (editedCell is TextBox textBlock)
+                try
                 {
-                    //TextBox_Resul_Window.Text = textBlock.Text;
-                    // Здесь вы можете отправить изменения в базу данных, используя Entity Framework.
-                    // Например, вы можете извлечь объект, который соответствует строке в DataGrid,
-                    // изменить его свойство, соответствующее столбцу, и вызвать метод SaveChanges()
-                    // для применения изменений в базе данных.
+                    // Получаем объект, соответствующий изменяемой ячейке 
+                    var editedCell = e.Column.GetCellContent(e.Row);
+
+                    // Получаем объект, соответствующий редактируемой строке 
+                    var employe = (Employe)e.Row.DataContext;
+
+                    // Если содержимое ячейки является текстовым блоком, извлекаем из него новое значение
+                    context.Entry(employe).State = EntityState.Modified;
+
+                    // Сохраняем изменения в базе данных
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка: {ex.Message}");
                 }
             }
-            context.SaveChanges();
+
             // Обновить DataGrid
             DataGrid_MyDb.ItemsSource = context.Employes.Local;
+        }
+
+        private void Main_Window_Program_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            context.SaveChanges();
         }
     }
 }
