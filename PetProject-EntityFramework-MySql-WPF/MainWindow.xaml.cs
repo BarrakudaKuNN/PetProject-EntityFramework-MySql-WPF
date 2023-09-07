@@ -33,7 +33,6 @@ namespace PetProject_EntityFramework_MySql_WPF
         private void Button_Test_Upload_Click(object sender, RoutedEventArgs e)
         {
             #region UploadToDB code
-            //Upload new info in our DB
                 var employe = new Employe()
                 {
                     FirstName = "Vladislav",
@@ -50,8 +49,7 @@ namespace PetProject_EntityFramework_MySql_WPF
       
         private void Button_Delete_Click(object sender, RoutedEventArgs e)
         {
-            //Delete Row for our DataGrid
-            for (var vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
+                for (var vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
                 {
                 if (vis is DataGridRow)
                 {
@@ -63,6 +61,7 @@ namespace PetProject_EntityFramework_MySql_WPF
                     context.SaveChanges();
                     break;
                 }
+              
             }
         }
 
