@@ -24,16 +24,16 @@ namespace PetProject_EntityFramework_MySql_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        MyDbConnection context;
         public MainWindow()
         {
             InitializeComponent();
 
         }
-
         private void Button_Test_Upload_Click(object sender, RoutedEventArgs e)
         {
             #region UploadToDB code
-            using (var context = new MyDbConnection())
+            using (context = new MyDbConnection())
             {
                 var employe = new Employe()
                 {
@@ -43,7 +43,6 @@ namespace PetProject_EntityFramework_MySql_WPF
                 context.Employes.Add(employe);
                 context.SaveChanges();
                 var slaves = context.Employes.ToList();
-                DataGrid_MyDb.ItemsSource = slaves;
                 TextBox_Resul_Window.Text = $"Id: {employe.EmployeeId} , name: {employe.FirstName}, surname: {employe.LastName}";
             }
             #endregion
@@ -74,11 +73,6 @@ namespace PetProject_EntityFramework_MySql_WPF
                     
                     connection.Employes.Remove(employe);
                     connection.SaveChanges();
-                    if (sender is DataGrid dataGrid)
-                    {
-                        dataGrid.Items.Remove(row.Item);
-                    }
-
                     break;
                 }
             }
@@ -88,6 +82,15 @@ namespace PetProject_EntityFramework_MySql_WPF
         private void DataGrid_MyDb_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void Main_Window_Program_Loaded(object sender, RoutedEventArgs e)
+        {
+            using(context = new MyDbConnection())
+            {
+                context.Employes.Load();
+                DataGrid_MyDb.ItemsSource = context.Employes.Local;
+            }
         }
     }
 }
