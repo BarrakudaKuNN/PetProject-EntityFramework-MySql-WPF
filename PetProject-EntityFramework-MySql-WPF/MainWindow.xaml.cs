@@ -87,8 +87,7 @@ namespace PetProject_EntityFramework_MySql_WPF
                 // Если содержимое ячейки является текстовым блоком, извлекаем из него новое значение
                 if (editedCell is TextBox textBlock)
                 {
-
-                    TextBox_Resul_Window.Text = textBlock.Text;
+                    //TextBox_Resul_Window.Text = textBlock.Text;
                     // Здесь вы можете отправить изменения в базу данных, используя Entity Framework.
                     // Например, вы можете извлечь объект, который соответствует строке в DataGrid,
                     // изменить его свойство, соответствующее столбцу, и вызвать метод SaveChanges()
