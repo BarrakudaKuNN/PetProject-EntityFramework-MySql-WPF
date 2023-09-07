@@ -1,25 +1,29 @@
-﻿<Window x:Name="Main_Window_Program" x:Class="PetProject_EntityFramework_MySql_WPF.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetProject_EntityFramework_MySql_WPF"
+        xmlns:Entiti="clr-namespace:PetProject_EntityFramework_MySql_WPF.Entiti" x:Name="Main_Window_Program" x:Class="PetProject_EntityFramework_MySql_WPF.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Loaded="Main_Window_Program_Loaded">
-  <Grid>
-    <DataGrid x:Name="DataGrid_MyDb" d:ItemsSource="{d:SampleData ItemCount=5}">
-      <DataGrid.Columns>
-        <DataGridTemplateColumn Header="Delete">
-          <DataGridTemplateColumn.CellTemplate>
-            <DataTemplate>
-              <Button Content="Delete" Click="Button_Delete_Click" />
-            </DataTemplate>
-          </DataGridTemplateColumn.CellTemplate>
-        </DataGridTemplateColumn>
-      </DataGrid.Columns>
-    </DataGrid>
-    <Button x:Name="Button_Test_Upload" Content="Upload" HorizontalAlignment="Left" Margin="64,177,0,0" VerticalAlignment="Top" Height="50" Width="85" Click="Button_Test_Upload_Click"/>
-    <TextBox x:Name="TextBox_Resul_Window" HorizontalAlignment="Left" Margin="274,189,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="361" Height="110"/>
+    <Grid>
+        <DataGrid x:Name="DataGrid_MyDb" d:ItemsSource="{d:SampleData ItemCount=5}" CellEditEnding="DataGrid_MyDb_CellEditEnding">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete" Click="Button_Delete_Click" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            <DataGrid.DataContext>
+                <Entiti:Employe/>
+            </DataGrid.DataContext>
+        </DataGrid>
+        <Button x:Name="Button_Test_Upload" Content="Upload" HorizontalAlignment="Left" Margin="64,177,0,0" VerticalAlignment="Top" Height="50" Width="85" Click="Button_Test_Upload_Click"/>
+        <TextBox x:Name="TextBox_Resul_Window" HorizontalAlignment="Left" Margin="274,189,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="361" Height="110"/>
 
-  </Grid>
+    </Grid>
 </Window>
