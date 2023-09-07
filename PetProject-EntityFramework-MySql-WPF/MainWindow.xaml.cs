@@ -34,17 +34,10 @@ namespace PetProject_EntityFramework_MySql_WPF
         }
         private void Button_Test_Upload_Click(object sender, RoutedEventArgs e)
         {
-        
-          var employe = new Employe()
-          {
-                    FirstName = "Vladislav",
-                    LastName = "Pizdabolov"
-          };
-          context.Employes.Add(employe);
-          context.SaveChanges();
-          TextBox_Resul_Window.Text = $"Id: {employe.EmployeeId} , name: {employe.FirstName}, surname: {employe.LastName}";
             
-         
+            Frame_One.Navigate(new Emp_Info());
+            Frame_One.Visibility = Visibility.Visible;
+            Grid_Page_One.Visibility = Visibility.Collapsed;
         }
 
       
@@ -111,7 +104,35 @@ namespace PetProject_EntityFramework_MySql_WPF
 
         private void Button_Click_Open(object sender, RoutedEventArgs e)
         {
+            //for (var vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
+            //{
+            //    if (vis is DataGridRow)
+            //    {
+            //        var row = (DataGridRow)vis;
+            //        int id = (row.Item as Employe).EmployeeId;
+            //        Employe employe = context.Employes.Where(o => o.EmployeeId == id).FirstOrDefault();
 
+                    
+            //        //context.Employes.Remove(employe);
+            //        context.SaveChanges();
+            //        break;
+            //    }
+
+            //}
+            Emp_Info emp_Info = new Emp_Info();
+            Frame_One.Content = emp_Info;
+        }
+
+        private void Button_Add_Person_Click(object sender, RoutedEventArgs e)
+        {
+            var employe = new Employe()
+            {
+                FirstName = TextBox_FirstName.Text,
+                LastName =  TextBox_LastName.Text
+            };
+            context.Employes.Add(employe);
+            context.SaveChanges();
+            TextBox_Resul_Window.Text = $"Id: {employe.EmployeeId} , name: {employe.FirstName}, surname: {employe.LastName}";
         }
     }
 }

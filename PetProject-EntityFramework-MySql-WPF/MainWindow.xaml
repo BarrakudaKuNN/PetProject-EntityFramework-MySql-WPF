@@ -8,30 +8,38 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Loaded="Main_Window_Program_Loaded" Closing="Main_Window_Program_Closing">
     <Grid>
-        <DataGrid x:Name="DataGrid_MyDb" d:ItemsSource="{d:SampleData ItemCount=5}" CanUserAddRows="False" CellEditEnding="DataGrid_MyDb_CellEditEnding">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Delete">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Delete" Click="Button_Delete_Click" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Open">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Open" Click="Button_Click_Open"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-            
-            <DataGrid.DataContext>
-                <Entiti:Employe/>
-            </DataGrid.DataContext>
-        </DataGrid>
-        <Button x:Name="Button_Test_Upload" Content="Upload" HorizontalAlignment="Left" Margin="64,177,0,0" VerticalAlignment="Top" Height="50" Width="85" Click="Button_Test_Upload_Click"/>
-        <TextBox x:Name="TextBox_Resul_Window" HorizontalAlignment="Left" Margin="274,189,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="361" Height="110"/>
+        <Grid x:Name="Grid_Page_One">
+            <DataGrid x:Name="DataGrid_MyDb" d:ItemsSource="{d:SampleData ItemCount=5}" CanUserAddRows="False" CellEditEnding="DataGrid_MyDb_CellEditEnding" Margin="0,121,0,0">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Delete">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" Click="Button_Delete_Click" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Open">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Open" Click="Button_Click_Open"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+
+                <DataGrid.DataContext>
+                    <Entiti:Employe/>
+                </DataGrid.DataContext>
+            </DataGrid>
+            <Button x:Name="Button_Test_Upload" Content="Upload" HorizontalAlignment="Left" Margin="240,30,0,0" VerticalAlignment="Top" Height="20" Width="90" Click="Button_Test_Upload_Click"/>
+            <TextBox x:Name="TextBox_Resul_Window" HorizontalAlignment="Left" Margin="418,289,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="361" Height="110"/>
+            <TextBox x:Name="TextBox_FirstName" HorizontalAlignment="Left" Margin="166,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151"/>
+            <TextBox x:Name="TextBox_LastName" HorizontalAlignment="Left" Margin="400,75,0,0" TextWrapping="Wrap" Text="&#xA;" VerticalAlignment="Top" Width="158" Height="18"/>
+            <Button x:Name="Button_Add_Person" Content="Add" HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top" Width="95" Click="Button_Add_Person_Click"/>
+            <TextBlock HorizontalAlignment="Left" Margin="127,76,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="333,75,0,0" TextWrapping="Wrap" Text="Last name:" VerticalAlignment="Top"/>
+        </Grid>
+        <Frame x:Name="Frame_One" Content="Frame" Background="AliceBlue" NavigationUIVisibility="Hidden" Visibility="Hidden"/>
 
     </Grid>
 </Window>
