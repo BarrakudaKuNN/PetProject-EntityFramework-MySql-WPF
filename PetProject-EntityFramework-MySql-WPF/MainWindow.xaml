@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Loaded="Main_Window_Program_Loaded" Closing="Main_Window_Program_Closing">
     <Grid>
-        <DataGrid x:Name="DataGrid_MyDb" d:ItemsSource="{d:SampleData ItemCount=5}" CellEditEnding="DataGrid_MyDb_CellEditEnding">
+        <DataGrid x:Name="DataGrid_MyDb" d:ItemsSource="{d:SampleData ItemCount=5}" CanUserAddRows="False" CellEditEnding="DataGrid_MyDb_CellEditEnding">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Delete">
                     <DataGridTemplateColumn.CellTemplate>
@@ -17,7 +17,15 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Open">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Open" Click="Button_Click_Open"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
+            
             <DataGrid.DataContext>
                 <Entiti:Employe/>
             </DataGrid.DataContext>

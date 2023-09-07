@@ -108,5 +108,10 @@ namespace PetProject_EntityFramework_MySql_WPF
         {
             context.SaveChanges();
         }
+
+        private void Button_Click_Open(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
