@@ -42,7 +42,6 @@ namespace PetProject_EntityFramework_MySql_WPF
                 };
                 context.Employes.Add(employe);
                 context.SaveChanges();
-                var slaves = context.Employes.ToList();
                 TextBox_Resul_Window.Text = $"Id: {employe.EmployeeId} , name: {employe.FirstName}, surname: {employe.LastName}";
             }
             #endregion
