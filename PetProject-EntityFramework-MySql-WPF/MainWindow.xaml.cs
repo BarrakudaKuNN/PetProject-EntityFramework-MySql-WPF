@@ -33,8 +33,7 @@ namespace PetProject_EntityFramework_MySql_WPF
         private void Button_Test_Upload_Click(object sender, RoutedEventArgs e)
         {
             #region UploadToDB code
-            using (context = new MyDbConnection())
-            {
+            //Upload new info in our DB
                 var employe = new Employe()
                 {
                     FirstName = "Vladislav",
@@ -43,53 +42,35 @@ namespace PetProject_EntityFramework_MySql_WPF
                 context.Employes.Add(employe);
                 context.SaveChanges();
                 TextBox_Resul_Window.Text = $"Id: {employe.EmployeeId} , name: {employe.FirstName}, surname: {employe.LastName}";
-            }
+            
             #endregion
 
-
-            //using (var context = new MyDbConnection())
-            //{
-            //    var slaves = context.Employes.ToList();
-            //    DataGrid_MyDb.ItemsSource = slaves;
-            //}
-
         }
 
-        private void DataGrid_MyDb_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+      
         private void Button_Delete_Click(object sender, RoutedEventArgs e)
         {
-            MyDbConnection connection = new MyDbConnection();
-            for(var vis = sender as Visual; vis !=null; vis = VisualTreeHelper.GetParent(vis) as Visual)
-            {
-                if(vis is DataGridRow)
+            //Delete Row for our DataGrid
+            for (var vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
+                {
+                if (vis is DataGridRow)
                 {
                     var row = (DataGridRow)vis;
                     int id = (row.Item as Employe).EmployeeId;
-                    Employe employe = connection.Employes.Where(o=>o.EmployeeId == id).FirstOrDefault();
-                    
-                    connection.Employes.Remove(employe);
-                    connection.SaveChanges();
+                    Employe employe = context.Employes.Where(o => o.EmployeeId == id).FirstOrDefault();
+
+                    context.Employes.Remove(employe);
+                    context.SaveChanges();
                     break;
                 }
             }
-            
-        }
-
-        private void DataGrid_MyDb_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         private void Main_Window_Program_Loaded(object sender, RoutedEventArgs e)
         {
-            using(context = new MyDbConnection())
-            {
-                context.Employes.Load();
-                DataGrid_MyDb.ItemsSource = context.Employes.Local;
-            }
+            context = new MyDbConnection();
+            context.Employes.Load();
+            DataGrid_MyDb.ItemsSource = context.Employes.Local;
         }
     }
 }
