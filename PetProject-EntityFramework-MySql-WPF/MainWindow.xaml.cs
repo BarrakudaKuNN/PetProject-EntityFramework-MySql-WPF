@@ -30,9 +30,8 @@ namespace PetProject_EntityFramework_MySql_WPF
         public MainWindow()
         {
             InitializeComponent();
-
+            
         }
-        
         private void Main_Window_Program_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             
@@ -50,6 +49,7 @@ namespace PetProject_EntityFramework_MySql_WPF
             context.Employes.Load();
             Page_One one = new Page_One();
             Frame_Main.Navigate(one);
+            
             Frame frame = (Frame)this.FindName("Frame_Main");
             DataGrid dataGrid = one.FindName("DataGrid_MyDb") as DataGrid;
             dataGrid.ItemsSource = context.Employes.Local;
