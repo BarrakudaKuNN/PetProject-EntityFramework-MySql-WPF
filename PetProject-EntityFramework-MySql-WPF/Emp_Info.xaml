@@ -36,10 +36,6 @@
         <Button x:Name="Button_Add_Person" Content="Add" HorizontalAlignment="Left" Margin="166,101,0,0" VerticalAlignment="Top" Width="95" Click="Button_Add_Person_Click"/>
         <TextBlock HorizontalAlignment="Left" Margin="127,76,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="333,75,0,0" TextWrapping="Wrap" Text="Last name:" VerticalAlignment="Top"/>
-        <Border BorderBrush="Black" BorderThickness="1">
-            <Button x:Name="Button_Back" Content="" Margin="31,44,0,0" FontSize="22" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="35" FontWeight="Bold" Background="#FF45CAC7" Click="Button_Back_Click"/>
-        </Border>
-
-
+        <Border BorderBrush="Black" BorderThickness="1"/>
     </Grid>
 </Page>

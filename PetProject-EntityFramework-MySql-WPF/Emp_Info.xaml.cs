@@ -20,9 +20,13 @@ namespace PetProject_EntityFramework_MySql_WPF
     /// </summary>
     public partial class Emp_Info : Page
     {
-        public Emp_Info()
+        MyDbConnection context;
+        Frame FrameOneTransfer;
+        internal Emp_Info(MyDbConnection connection, Frame frame)
         {
             InitializeComponent();
+            context= connection;
+            FrameOneTransfer = frame;
         }
 
         private void Button_Delete_Click(object sender, RoutedEventArgs e)

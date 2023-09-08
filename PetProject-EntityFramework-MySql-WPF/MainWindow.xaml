@@ -10,6 +10,7 @@
     <Grid>
         <Frame x:Name="Frame_Main" Content="Frame"/>
         <Button x:Name="Button_Connect" Content="Button" HorizontalAlignment="Left" Margin="0,372,0,0" VerticalAlignment="Top" Height="34" Width="110" Click="Button_Connect_Click"/>
+        <Button x:Name="Add_infoButton" Content="Button" HorizontalAlignment="Left" Margin="242,118,0,0" VerticalAlignment="Top" Height="36" Width="96" Click="Add_infoButton_Click"/>
     </Grid>
 
 </Window>

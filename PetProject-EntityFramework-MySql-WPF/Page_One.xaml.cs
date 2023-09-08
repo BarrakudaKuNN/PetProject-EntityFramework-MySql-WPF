@@ -1,6 +1,7 @@
 ﻿using PetProject_EntityFramework_MySql_WPF.Entiti;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
@@ -24,9 +25,12 @@ namespace PetProject_EntityFramework_MySql_WPF
     public partial class Page_One : Page
     {
         MyDbConnection context;
-        public Page_One()
+        Frame FrameOneTransfer;
+        internal Page_One (MyDbConnection сonnect,Frame frame)
         {
             InitializeComponent();
+            context = сonnect;
+            FrameOneTransfer = frame;
         }
         private void Button_Test_Upload_Click(object sender, RoutedEventArgs e)
         {
@@ -97,22 +101,48 @@ namespace PetProject_EntityFramework_MySql_WPF
 
         private void Button_Click_Open(object sender, RoutedEventArgs e)
         {
-            //for (var vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
-            //{
-            //    if (vis is DataGridRow)
-            //    {
-            //        var row = (DataGridRow)vis;
-            //        int id = (row.Item as Employe).EmployeeId;
-            //        Employe employe = context.Employes.Where(o => o.EmployeeId == id).FirstOrDefault();
+            ///Сhecl wich line was selected by user
+            for (var vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
+            {
+                if (vis is DataGridRow)
+                {
+                    //Get uniq Id of selected line
+                    var row = (DataGridRow)vis;
+                    int id = (row.Item as Employe).EmployeeId;
+                    //Search line whith this unqi ID in our MSSQL database. we call to DB trouhg "context."
+                    Employe employe = context.Employes.Where(o => o.EmployeeId == id).FirstOrDefault();
+                    //Create
+                    
+                    
+                    var record = context.EmployeInfos.FirstOrDefault(r => r.Id == id);
+                    var records = new ObservableCollection<EmployeInfo>();
+                    if (record != null)
+                    {
+                        records.Add(record);
+                    }
+                    if(record == null)
+                    {
+                        var employeInfo = new EmployeInfo() { EmployeId = id };
+                        context.EmployeInfos.Add(employeInfo);
+                        records.Add(employeInfo);
+                    }
+                    Emp_Info one = new Emp_Info(context, FrameOneTransfer);
+                    FrameOneTransfer.Navigate(one);
 
+                    Frame frame = (Frame)this.FindName("Frame_Main");
+                    DataGrid dataGrid = one.FindName("DataGrid_MyDb_Two") as DataGrid;
+                    dataGrid.ItemsSource = records;
 
-            //        //context.Employes.Remove(employe);
-            //        context.SaveChanges();
-            //        break;
-            //    }
+                    //context.Employes.Remove(employe);
+                    context.SaveChanges();
+                    break;
+                }
 
-            //}
+            }
             
+            //context.EmployeInfos.Load();
+           
+
         }
 
         private void Button_Add_Person_Click(object sender, RoutedEventArgs e)

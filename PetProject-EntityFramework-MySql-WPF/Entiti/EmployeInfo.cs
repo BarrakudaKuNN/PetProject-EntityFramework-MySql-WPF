@@ -16,6 +16,7 @@ namespace PetProject_EntityFramework_MySql_WPF.Entiti
        public string Adress { get; set; }
        public string City { get; set; }
        public string PhoneNumber { get; set; }
+       public int EmployeId { get; set; }
 
         public virtual Employe Employe { get; set; }
     }
