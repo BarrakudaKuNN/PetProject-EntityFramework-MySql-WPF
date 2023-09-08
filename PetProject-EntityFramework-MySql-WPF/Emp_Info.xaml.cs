@@ -55,24 +55,6 @@ namespace PetProject_EntityFramework_MySql_WPF
         {
             if (e.EditAction == DataGridEditAction.Commit)
             {
-                //MyDbConnection myDbConnection;
-                //try
-                //{
-                //    // Получаем объект, соответствующий изменяемой ячейке 
-                //    var editedCell = e.Column.GetCellContent(e.Row);
-
-                //    // Получаем объект, соответствующий редактируемой строке 
-                //    var employeInfo = (EmployeInfo)e.Row.DataContext;
-
-                //    // Если содержимое ячейки является текстовым блоком, извлекаем из него новое значение
-                //    context.Entry(employeInfo).State = EntityState.Modified;
-
-                //    // Сохраняем изменения в базе данных
-                //}
-                //catch (Exception ex)
-                //{
-                //    MessageBox.Show($"Ошибка: {ex.Message}");
-                //}
                 try
                 {
                     var employeInfo = (EmployeInfo)e.Row.DataContext;
@@ -101,7 +83,6 @@ namespace PetProject_EntityFramework_MySql_WPF
                     MessageBox.Show($"Ошибка: {ex.Message}");
                 }
             }
-            context.SaveChanges();
         }
 
         private void Button_Back_Click(object sender, RoutedEventArgs e)

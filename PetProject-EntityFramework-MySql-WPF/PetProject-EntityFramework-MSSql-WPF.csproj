@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="Entiti\Employe.cs" />
     <Compile Include="Entiti\EmployeInfo.cs" />
+    <Compile Include="Entiti\EmployeInfoModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
