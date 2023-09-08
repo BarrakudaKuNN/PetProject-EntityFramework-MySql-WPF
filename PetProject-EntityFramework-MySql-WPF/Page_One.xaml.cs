@@ -26,7 +26,7 @@ namespace PetProject_EntityFramework_MySql_WPF
     {
         MyDbConnection context;
         Frame FrameOneTransfer;
-        internal Page_One (MyDbConnection сonnect,Frame frame)
+        internal Page_One(MyDbConnection сonnect, Frame frame)
         {
             InitializeComponent();
             context = сonnect;
@@ -57,7 +57,7 @@ namespace PetProject_EntityFramework_MySql_WPF
 
         private void Main_Window_Program_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
             //context = new MyDbConnection();
             //context.Employes.Load();
             //DataGrid_MyDb.ItemsSource = context.Employes.Local;
@@ -97,55 +97,60 @@ namespace PetProject_EntityFramework_MySql_WPF
             context.SaveChanges();
         }
 
+        //Hardes lines of code
         private void Button_Click_Open(object sender, RoutedEventArgs e)
         {
-            ///Сhecl wich line was selected by user
-            for (var vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
+            try
             {
-                if (vis is DataGridRow)
+                ///Сhecl wich line was selected by user
+                for (var vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
                 {
-                    //Get uniq Id of selected line EmployeeId= our PK
-                    var row = (DataGridRow)vis;
-                    int id = (row.Item as Employe).EmployeeId;
-                    //Search line whith this unqi ID in our MSSQL database. we call to DB trough "context."
-                    Employe employe = context.Employes.Where(o => o.EmployeeId == id).FirstOrDefault();
-
-                    //Get our line from Db by her uniq ID and tryig to put it in our new field "record" 
-
-                    var record = context.EmployeInfos.FirstOrDefault(r => r.Id == id);
-                    var records = new ObservableCollection<EmployeInfo>();
-
-                    // if we found our line (its exist) we put it in ObservableCollection
-                    if (record != null)
+                    if (vis is DataGridRow)
                     {
-                        records.Add(record);
-                    }
-                    // if we didnt found our line we create new (empty) we fill only Id
-                    //Cuz we have one-to-one realation and Id of new EmployeInfo equal to Id of our selected line 
-                    if(record == null)
-                    {
-                        var employeInfo = new EmployeInfo() { EmployeId = id };
-                        context.EmployeInfos.Add(employeInfo);
-                        records.Add(employeInfo);
-                    }
-                    //Navigation block 
-                    //We create new Page-MoveToHer-And write our result to DataGrid of "New Page"
-                    Emp_Info one = new Emp_Info(context, FrameOneTransfer);
-                    FrameOneTransfer.Navigate(one);
+                        //Get uniq Id of selected line EmployeeId= our PK
+                        var row = (DataGridRow)vis;
+                        int id = (row.Item as Employe).EmployeeId;
+                        //Search line whith this unqi ID in our MSSQL database. we call to DB trough "context."
+                        Employe employe = context.Employes.Where(o => o.EmployeeId == id).FirstOrDefault();
 
-                    Frame frame = (Frame)this.FindName("Frame_Main");
-                    DataGrid dataGrid = one.FindName("DataGrid_MyDb_Two") as DataGrid;
-                    dataGrid.ItemsSource = records;
-                    //Save result
-                    context.SaveChanges();
-                    break;
+                        //Get our line from Db by her uniq ID and tryig to put it in our new field "record" 
+
+                        var record = context.EmployeInfos.FirstOrDefault(r => r.Id == id);
+                        var records = new ObservableCollection<EmployeInfo>();
+
+                        // if we found our line (its exist) we put it in ObservableCollection
+                        if (record != null)
+                        {
+                            records.Add(record);
+                        }
+                        //if we didnt found our line we create new (empty) we fill only Id
+                        //Cuz we have one-to-one realation and Id of new EmployeInfo equal to Id of our selected line 
+                        if (record == null)
+                        {
+                            var employeInfo = new EmployeInfo() { EmployeId = id };
+                            context.EmployeInfos.Add(employeInfo);
+                            records.Add(employeInfo);
+                        }
+                        //Navigation block 
+                        //We create new Page-MoveToHer-And write our result to DataGrid of "New Page"
+                        Emp_Info one = new Emp_Info(context, FrameOneTransfer);
+                        FrameOneTransfer.Navigate(one);
+
+                        Frame frame = (Frame)this.FindName("Frame_Main");
+                        DataGrid dataGrid = one.FindName("DataGrid_MyDb_Two") as DataGrid;
+                        dataGrid.ItemsSource = records;
+                        //Save result
+                        context.SaveChanges();
+                        break;
+                    }
+
                 }
 
             }
-            
-            //context.EmployeInfos.Load();
-           
-
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Button_Add_Person_Click(object sender, RoutedEventArgs e)
@@ -157,7 +162,8 @@ namespace PetProject_EntityFramework_MySql_WPF
             };
             context.Employes.Add(employe);
             context.SaveChanges();
-            TextBox_Resul_Window.Text = $"Id: {employe.EmployeeId} , name: {employe.FirstName}, surname: {employe.LastName}";
+
+            TextBox_Resul_Window.Text = $"Создана запись на Имя: {employe.FirstName} {employe.LastName}";
         }
     }
 }
