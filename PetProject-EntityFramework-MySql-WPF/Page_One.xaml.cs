@@ -58,15 +58,13 @@ namespace PetProject_EntityFramework_MySql_WPF
         private void Main_Window_Program_Loaded(object sender, RoutedEventArgs e)
         {
             
-            context = new MyDbConnection();
-            context.Employes.Load();
-            DataGrid_MyDb.ItemsSource = context.Employes.Local;
+            //context = new MyDbConnection();
+            //context.Employes.Load();
+            //DataGrid_MyDb.ItemsSource = context.Employes.Local;
         }
 
         private void DataGrid_MyDb_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-
-
             if (e.EditAction == DataGridEditAction.Commit)
             {
 
@@ -106,34 +104,39 @@ namespace PetProject_EntityFramework_MySql_WPF
             {
                 if (vis is DataGridRow)
                 {
-                    //Get uniq Id of selected line
+                    //Get uniq Id of selected line EmployeeId= our PK
                     var row = (DataGridRow)vis;
                     int id = (row.Item as Employe).EmployeeId;
-                    //Search line whith this unqi ID in our MSSQL database. we call to DB trouhg "context."
+                    //Search line whith this unqi ID in our MSSQL database. we call to DB trough "context."
                     Employe employe = context.Employes.Where(o => o.EmployeeId == id).FirstOrDefault();
-                    //Create
-                    
-                    
+
+                    //Get our line from Db by her uniq ID and tryig to put it in our new field "record" 
+
                     var record = context.EmployeInfos.FirstOrDefault(r => r.Id == id);
                     var records = new ObservableCollection<EmployeInfo>();
+
+                    // if we found our line (its exist) we put it in ObservableCollection
                     if (record != null)
                     {
                         records.Add(record);
                     }
+                    // if we didnt found our line we create new (empty) we fill only Id
+                    //Cuz we have one-to-one realation and Id of new EmployeInfo equal to Id of our selected line 
                     if(record == null)
                     {
                         var employeInfo = new EmployeInfo() { EmployeId = id };
                         context.EmployeInfos.Add(employeInfo);
                         records.Add(employeInfo);
                     }
+                    //Navigation block 
+                    //We create new Page-MoveToHer-And write our result to DataGrid of "New Page"
                     Emp_Info one = new Emp_Info(context, FrameOneTransfer);
                     FrameOneTransfer.Navigate(one);
 
                     Frame frame = (Frame)this.FindName("Frame_Main");
                     DataGrid dataGrid = one.FindName("DataGrid_MyDb_Two") as DataGrid;
                     dataGrid.ItemsSource = records;
-
-                    //context.Employes.Remove(employe);
+                    //Save result
                     context.SaveChanges();
                     break;
                 }
