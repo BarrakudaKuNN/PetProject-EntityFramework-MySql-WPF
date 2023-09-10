@@ -8,9 +8,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Loaded="Main_Window_Program_Loaded" Closing="Main_Window_Program_Closing">
     <Grid>
-        <Frame x:Name="Frame_Main" Content="Frame"/>
-        <Button x:Name="Button_Connect" Content="Button" HorizontalAlignment="Left" Margin="0,372,0,0" VerticalAlignment="Top" Height="34" Width="110" Click="Button_Connect_Click"/>
-        <Button x:Name="Add_infoButton" Content="Button" HorizontalAlignment="Left" Margin="242,118,0,0" VerticalAlignment="Top" Height="36" Width="96" Click="Add_infoButton_Click"/>
+        <Frame x:Name="Frame_Main" Content=""/>
+        <Grid x:Name="Grid_Login_Sreen">
+            <Button x:Name="Button_Connect" Content="Подключиться" HorizontalAlignment="Left" Margin="390,183,0,0" VerticalAlignment="Top" Height="34" Width="110" Click="Button_Connect_Click"/>
+            <Button x:Name="Add_infoButton" Content="Button" HorizontalAlignment="Left" Margin="120,66,0,0" VerticalAlignment="Top" Height="36" Width="96" Click="Add_infoButton_Click"/>
+            <TextBox x:Name="TextBox_Connection" HorizontalAlignment="Left" Margin="360,136,0,0" TextWrapping="Wrap" Text="Enter..." VerticalAlignment="Top" Width="169" Height="31"/>
+            <TextBlock HorizontalAlignment="Left" Margin="173,139,0,0" TextWrapping="Wrap" Text="Строка подключения MS-SQL" VerticalAlignment="Top" Width="187"/>
+        </Grid>
     </Grid>
 
 </Window>

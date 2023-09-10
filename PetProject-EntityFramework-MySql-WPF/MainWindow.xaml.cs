@@ -57,6 +57,8 @@ namespace PetProject_EntityFramework_MySql_WPF
                 Frame frame = (Frame)this.FindName("Frame_Main");
                 DataGrid dataGrid = one.FindName("DataGrid_MyDb") as DataGrid;
                 dataGrid.ItemsSource = context.Employes.Local;
+                Grid_Login_Sreen.Visibility = Visibility.Collapsed;
+            
             }
             catch(Exception ex)
             {
