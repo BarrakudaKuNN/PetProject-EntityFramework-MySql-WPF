@@ -45,17 +45,23 @@ namespace PetProject_EntityFramework_MySql_WPF
 
         private void Button_Connect_Click(object sender, RoutedEventArgs e)
         {
-            context = new MyDbConnection();
-            context.Database.CreateIfNotExists();
-            context.Database.Initialize(true);
-            context.Employes.Load();
-            Page_One one = new Page_One(context, Frame_Main);
-            Frame_Main.Navigate(one);
-            
-            Frame frame = (Frame)this.FindName("Frame_Main");
-            DataGrid dataGrid = one.FindName("DataGrid_MyDb") as DataGrid;
-            dataGrid.ItemsSource = context.Employes.Local;
-            
+            try
+            {
+                context = new MyDbConnection();
+                context.Database.CreateIfNotExists();
+                context.Database.Initialize(true);
+                context.Employes.Load();
+                Page_One one = new Page_One(context, Frame_Main);
+                Frame_Main.Navigate(one);
+
+                Frame frame = (Frame)this.FindName("Frame_Main");
+                DataGrid dataGrid = one.FindName("DataGrid_MyDb") as DataGrid;
+                dataGrid.ItemsSource = context.Employes.Local;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Add_infoButton_Click(object sender, RoutedEventArgs e)
