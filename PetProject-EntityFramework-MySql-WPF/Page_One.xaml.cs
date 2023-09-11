@@ -32,12 +32,6 @@ namespace PetProject_EntityFramework_MySql_WPF
             context = сonnect;
             FrameOneTransfer = frame;
         }
-        private void Button_Test_Upload_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
         private void Button_Delete_Click(object sender, RoutedEventArgs e)
         {
             for (var vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
@@ -53,14 +47,6 @@ namespace PetProject_EntityFramework_MySql_WPF
                     break;
                 }
             }
-        }
-
-        private void Main_Window_Program_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            //context = new MyDbConnection();
-            //context.Employes.Load();
-            //DataGrid_MyDb.ItemsSource = context.Employes.Local;
         }
 
         private void DataGrid_MyDb_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)

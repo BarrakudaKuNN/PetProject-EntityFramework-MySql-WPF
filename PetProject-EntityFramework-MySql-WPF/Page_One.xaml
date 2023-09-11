@@ -29,8 +29,7 @@
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button x:Name="Button_Test_Upload" Content="Upload" HorizontalAlignment="Left" Margin="316,350,0,0" VerticalAlignment="Top" Height="20" Width="90" Click="Button_Test_Upload_Click"/>
-                <TextBox x:Name="TextBox_Resul_Window" HorizontalAlignment="Left" Margin="165,318,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="393" Height="32"/>
+                <TextBox x:Name="TextBox_Resul_Window" HorizontalAlignment="Left" Margin="165,318,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="393" Height="32" Text="..."/>
                 <TextBox x:Name="TextBox_FirstName" HorizontalAlignment="Left" Margin="166,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151"/>
                 <TextBox x:Name="TextBox_LastName" HorizontalAlignment="Left" Margin="400,29,0,0" TextWrapping="Wrap" Text="&#xA;" VerticalAlignment="Top" Width="158" Height="18"/>
                 <Button x:Name="Button_Add_Person" Content="Add" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top" Width="95" Click="Button_Add_Person_Click"/>

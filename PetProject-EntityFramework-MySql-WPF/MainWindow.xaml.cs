@@ -1,6 +1,7 @@
 ﻿using PetProject_EntityFramework_MySql_WPF.Entiti;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Reflection;
@@ -18,6 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PetProject_EntityFramework_MySql_WPF
 {
@@ -32,35 +34,37 @@ namespace PetProject_EntityFramework_MySql_WPF
             InitializeComponent();
             
         }
-        private void Main_Window_Program_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            
-        }
-        private void Main_Window_Program_Loaded(object sender, RoutedEventArgs e)
-        {
-            //context = new MyDbConnection();
-            //context.Employes.Load();
-            //DataGrid_MyDb.ItemsSource = context.Employes.Local;
-        }
-
         private void Button_Connect_Click(object sender, RoutedEventArgs e)
         {
-            context = new MyDbConnection();
-            context.Database.CreateIfNotExists();
-            context.Database.Initialize(true);
-            context.Employes.Load();
-            Page_One one = new Page_One(context, Frame_Main);
-            Frame_Main.Navigate(one);
+            try
+            {
+                context = new MyDbConnection();
+                context.Database.CreateIfNotExists();
+                context.Database.Initialize(true);
+                context.Employes.Load();
+                Page_One one = new Page_One(context, Frame_Main);
+                Frame_Main.Navigate(one);
+
+                Frame frame = (Frame)this.FindName("Frame_Main");
+                DataGrid dataGrid = one.FindName("DataGrid_MyDb") as DataGrid;
+                dataGrid.ItemsSource = context.Employes.Local;
+                Grid_Login_Sreen.Visibility = Visibility.Collapsed;
             
-            Frame frame = (Frame)this.FindName("Frame_Main");
-            DataGrid dataGrid = one.FindName("DataGrid_MyDb") as DataGrid;
-            dataGrid.ItemsSource = context.Employes.Local;
-            
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        private void Add_infoButton_Click(object sender, RoutedEventArgs e)
+        private void Main_Window_Program_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            
+
+        }
+
+        private void Main_Window_Program_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
