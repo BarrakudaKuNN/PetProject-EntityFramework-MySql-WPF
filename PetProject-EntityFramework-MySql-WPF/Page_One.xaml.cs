@@ -58,9 +58,6 @@ namespace PetProject_EntityFramework_MySql_WPF
         private void Main_Window_Program_Loaded(object sender, RoutedEventArgs e)
         {
 
-            //context = new MyDbConnection();
-            //context.Employes.Load();
-            //DataGrid_MyDb.ItemsSource = context.Employes.Local;
         }
 
         private void DataGrid_MyDb_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
