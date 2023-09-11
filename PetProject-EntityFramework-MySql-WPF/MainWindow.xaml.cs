@@ -1,6 +1,7 @@
 ﻿using PetProject_EntityFramework_MySql_WPF.Entiti;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Reflection;
@@ -18,6 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PetProject_EntityFramework_MySql_WPF
 {
