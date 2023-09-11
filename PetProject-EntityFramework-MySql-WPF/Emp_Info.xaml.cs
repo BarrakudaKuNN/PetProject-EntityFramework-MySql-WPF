@@ -30,27 +30,6 @@ namespace PetProject_EntityFramework_MySql_WPF
             context= connection;
             FrameOneTransfer = frame;
         }
-
-        private void Button_Delete_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_Open(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Add_Person_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Test_Upload_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void DataGrid_MyDb_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             if (e.EditAction == DataGridEditAction.Commit)
@@ -85,9 +64,5 @@ namespace PetProject_EntityFramework_MySql_WPF
             }
         }
 
-        private void Button_Back_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
     }
 }

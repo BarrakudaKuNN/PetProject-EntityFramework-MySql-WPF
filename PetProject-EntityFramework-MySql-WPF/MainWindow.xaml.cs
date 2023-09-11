@@ -34,15 +34,6 @@ namespace PetProject_EntityFramework_MySql_WPF
             InitializeComponent();
             
         }
-        private void Main_Window_Program_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            
-        }
-        private void Main_Window_Program_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void Button_Connect_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -66,9 +57,14 @@ namespace PetProject_EntityFramework_MySql_WPF
             }
         }
 
-        private void Add_infoButton_Click(object sender, RoutedEventArgs e)
+        private void Main_Window_Program_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            
+
+        }
+
+        private void Main_Window_Program_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
